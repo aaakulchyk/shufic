@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block video %}
+  <div class="col-12 video">
+    <iframe width="100%" height="480" src="{{ Video.url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <h3 class="video__title">{{ Video.title }}</h3>
+    <span class="video__date">{{ Video.date }}</span>
+    <p class="video__description">{{ Video.description }}</p>
+    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ Video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/like_video/{{ Video.id }}/" aria-hidden="true"></a>{{ Video.rating }}</span>
+  </div>
+  {% for comment in Comments %}
+    <div class="row video__comment">
+      <div class="col-1 video__comment__rating">
+        <a class="oi oi-chevron-top" title="А он тему говорит!" href="#" aria-hidden="true"></a>
+        <p class="video__comment__rating__value">{{ comment.rating }}</p>
+        <a class="oi oi-chevron-bottom" title="Да шо ты городишь, Люся?!" href="#" aria-hidden="true"></a>
+      </div>
+      <div class="col-8 video__comment__content">
+        <div class="video__comment__date">
+          <span class="video__comment__date">{{ comment.date }}</span>
+        </div>
+        <div class="video__comment__text">
+          <p class="video__comment__text">{{ comment.text }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+    <form class="video__commentform" id="video__commentform" action="/commit/{{ Video.id }}/" method="POST">
+      {% csrf_token %}
+      {{ Form }}
+      <small class="form-text text-muted">Добавляя комментарий, я клянусь в своей адекватности.</small>
+      <input type="submit" class="btn btn-primary video__commentform__btn" value="Добавить">
+    </form>
+  {% endblock %}
