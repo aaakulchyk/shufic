@@ -6,7 +6,7 @@
     <h3 class="video__title">{{ Video.title }}</h3>
     <span class="video__date">{{ Video.date }}</span>
     <p class="video__description">{{ Video.description }}</p>
-    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ Video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/like_video/{{ Video.id }}/" aria-hidden="true"></a>{{ Video.rating }}</span>
+    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ Video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/dislike_video/{{ Video.id }}/" aria-hidden="true"></a>{{ Video.rating }}</span>
   </div>
   {% for comment in Comments %}
     <div class="row video__comment">

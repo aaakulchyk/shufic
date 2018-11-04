@@ -28,24 +28,36 @@ def show_bio(request):
 def toggle_like_video(request, video_id):
     response = redirect('/video/' + str(video_id) + '/')
     video = Video.objects.get(id=video_id)
-    if video_id in request.COOKIES:
-        video.rating -= 1
-        response.delete_cookie(video_id)
+    cookies = request.COOKIES
+    if video_id in cookies:
+        if cookies[video_id] == 'dislike':
+            video.rating += 2
+            response.set_cookie(video_id, 'like')
+        elif cookies[video_id] == 'like':
+            video.rating -= 1
+            response.delete_cookie(video_id)
     else:
         video.rating += 1
-        response.set_cookie(video_id)
+        response.set_cookie(video_id, 'like')
     video.save()
     return response
 
 
-def dislike_video(request, video_id):
+def toggle_dislike_video(request, video_id):
     response = redirect('/video/' + str(video_id) + '/')
-    if video_id in request.COOKIES:
-        Video.objects.get(id=video_id).rating += 1
-        response.delete_cookie(video_id)
+    video = Video.objects.get(id=video_id)
+    cookies = request.COOKIES
+    if video_id in cookies:
+        if cookies[video_id] == 'like':
+            video.rating -= 2
+            response.set_cookie(video_id, 'dislike')
+        elif cookies[video_id] == 'dislike':
+            video.rating += 1
+            response.delete_cookie(video_id)
     else:
-        Video.objects.get(id=video_id).rating -= 1
-        response.set_cookie(video_id, 'I don\'t like it!')
+        video.rating -= 1
+        response.set_cookie(video_id, 'dislike')
+    video.save()
     return response
 
 
