@@ -12,13 +12,12 @@ def show_latest_videos(request):
 
 
 def show_video(request, video_id):
-    kwargs = {}
-    kwargs.update(csrf(request))
-    kwargs['Video'] = get_object_or_404(Video, id=video_id)
-    kwargs['Comments'] = Comment.objects.filter(videoparent_id=video_id)
-    kwargs['Form'] = form.CommentForm
-    kwargs['Username'] = auth.get_user(request).username
-    return render(request, 'video.html', kwargs)
+    context = {'video': get_object_or_404(Video, id=video_id),
+               'comments': Comment.objects.filter(videoparent_id=video_id),
+               'username': auth.get_user(request).username,
+               'form': form.CommentForm}
+    context.update(csrf(request))
+    return render(request, 'video.html', context)
 
 
 def show_bio(request):
@@ -61,7 +60,7 @@ def toggle_dislike_video(request, video_id):
     return response
 
 
-def commit(request, video_id):
+def leave_comment(request, video_id):
     if request.POST:
         _form = form.CommentForm(request.POST)
         if _form.is_valid():

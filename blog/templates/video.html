@@ -1,14 +1,18 @@
 {% extends 'main.html' %}
 {% load staticfiles %}
 {% block video %}
+  {% if error_message %}
+  <p><strong>{{ error_message }}</strong></p>
+  {% endif %}
+  {% if video %}
   <div class="col-12 video">
-    <iframe width="100%" height="480" src="{{ Video.url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    <h3 class="video__title">{{ Video.title }}</h3>
-    <span class="video__date">{{ Video.date }}</span>
-    <p class="video__description">{{ Video.description }}</p>
-    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ Video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/dislike_video/{{ Video.id }}/" aria-hidden="true"></a>{{ Video.rating }}</span>
+    <iframe width="100%" height="480" src="{{ video.url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <h3 class="video__title">{{ video.title }}</h3>
+    <span class="video__date">{{ video.date }}</span>
+    <p class="video__description">{{ video.description }}</p>
+    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/dislike_video/{{ Video.id }}/" aria-hidden="true"></a>{{ video.rating }}</span>
   </div>
-  {% for comment in Comments %}
+  {% for comment in comments %}
     <div class="row video__comment">
       <div class="col-1 video__comment__rating">
         <a class="oi oi-chevron-top" title="А он тему говорит!" href="#" aria-hidden="true"></a>
@@ -31,4 +35,5 @@
       <small class="form-text text-muted">Добавляя комментарий, я клянусь в своей адекватности.</small>
       <input type="submit" class="btn btn-primary video__commentform__btn" value="Добавить">
     </form>
+  {% endif %}
   {% endblock %}

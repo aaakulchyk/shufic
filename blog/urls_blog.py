@@ -11,5 +11,5 @@ urlpatterns = [
     #re_path(r'^like_video/like_video_ajax/$', views.like_video_ajax),
     re_path(r'^dislike_video/(?P<video_id>\d+)/$', views.toggle_dislike_video),
     #re_path(r'^dislike_video/dislike_video_ajax/$', views.dislike_video_ajax),
-    re_path(r'^commit/(?P<video_id>\d+)/$', views.commit),
+    re_path(r'^comment/(?P<video_id>\d+)/$', views.leave_comment, name='leave_comment'),
 ]
