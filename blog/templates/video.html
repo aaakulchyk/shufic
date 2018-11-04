@@ -29,9 +29,12 @@
       </div>
     </div>
   {% endfor %}
-    <form action="{{ 'blog:leave_comment' }}{{ video.id }}" method="POST">
-      {% csrf_token %}{{ form }}
-      <small class="form-text text-muted">Добавляя комментарий, переверните календарь.</small>
+    <form class="video__commentform" action="{{ 'blog:leave_comment' }}{{ video.id }}" method="POST">
+      {% csrf_token %}
+      <div class="form-group video__commentform__form">
+        {{ form }}
+        <small class="form-text text-muted">Добавляя комментарий, переверните календарь.</small>
+      </div>
       <input type="submit" class="btn btn-primary video__commentform__btn" value="Добавить">
     </form>
   {% endif %}
