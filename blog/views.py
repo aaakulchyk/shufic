@@ -14,7 +14,7 @@ def show_video(request, video_id):
     context = {'video': get_object_or_404(Video, id=video_id),
                'comments': Comment.objects.filter(videoparent_id=video_id),
                'username': auth.get_user(request).username,
-               'form': CommentForm,}
+               'form': CommentForm, }
     context.update(csrf(request))
     return render(request, 'video.html', context)
 
@@ -66,4 +66,4 @@ def leave_comment(request, video_id):
             comment = form.save(commit=False)
             comment.videoparent = Video.objects.get(id=video_id)
             form.save()
-    return redirect('/video/' + str(video_id) + '/')
+    return redirect("/video/" + str(video_id) + "/")

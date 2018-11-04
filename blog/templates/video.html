@@ -10,7 +10,7 @@
     <h3 class="video__title">{{ video.title }}</h3>
     <span class="video__date">{{ video.date }}</span>
     <p class="video__description">{{ video.description }}</p>
-    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/dislike_video/{{ Video.id }}/" aria-hidden="true"></a>{{ video.rating }}</span>
+    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/dislike_video/{{ video.id }}/" aria-hidden="true"></a>{{ video.rating }}</span>
   </div>
   {% for comment in comments %}
     <div class="row video__comment">
@@ -29,9 +29,8 @@
       </div>
     </div>
   {% endfor %}
-    <form class="video__commentform" id="video__commentform" action="/video/{{ video.id }}/leave_comment" method="POST">
-      {% csrf_token %}
-      {{ formset }}
+    <form action="{{ 'blog:leave_comment' }}{{ video.id }}" method="POST">
+      {% csrf_token %}{{ form }}
       <small class="form-text text-muted">Добавляя комментарий, переверните календарь.</small>
       <input type="submit" class="btn btn-primary video__commentform__btn" value="Добавить">
     </form>
