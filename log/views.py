@@ -19,5 +19,8 @@ def login(request):
 
 
 def logout(request):
+    '''auth.logout(request)
+    return redirect('/')'''
     auth.logout(request)
-    return redirect('/')
+    response = redirect('/')
+    return render(request, response)

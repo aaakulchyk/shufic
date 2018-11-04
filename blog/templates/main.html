@@ -12,7 +12,10 @@
   </head>
   <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row d-flex justify-content-between bg-dark">
-      <a class="navbar-brand" href="/bio">Шуфик</a>
+      <div class="navbar-brand brand">
+        <a class="brand__home" href="/"><img width="20%" src="{% static 'images/shufic_silent.png' %}" class="img-fluid" alt="Тихий Мишаня"></a>
+        <a class="brand__bio" href="/bio">Шуфик</a>
+      </div>
       <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
         <form class="form-inline">
           <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
