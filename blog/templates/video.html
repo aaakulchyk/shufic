@@ -29,7 +29,7 @@
       </div>
     </div>
   {% endfor %}
-    <form class="video__commentform" action="{{ 'blog:leave_comment' }}{{ video.id }}" method="POST">
+    <form class="video__commentform" action="{% url 'blog:leave_comment' video.id %}" method="POST">
       {% csrf_token %}
       <div class="form-group video__commentform__form">
         {{ form }}
