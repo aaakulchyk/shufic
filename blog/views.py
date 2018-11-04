@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Video, Comment
 from . import form
 from django.template.context_processors import csrf
@@ -14,7 +14,7 @@ def show_latest_videos(request):
 def show_video(request, video_id):
     kwargs = {}
     kwargs.update(csrf(request))
-    kwargs['Video'] = Video.objects.get(id=video_id)
+    kwargs['Video'] = get_object_or_404(Video, id=video_id)
     kwargs['Comments'] = Comment.objects.filter(videoparent_id=video_id)
     kwargs['Form'] = form.CommentForm
     kwargs['Username'] = auth.get_user(request).username
