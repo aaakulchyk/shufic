@@ -6,7 +6,7 @@
         {% for video in latest_videos_list %}
         <div class="mb-auto p-2 bd-highlight video">
           <iframe width="100%" src="{{ video.url }}" frameborder="0" allow="encrypted-media"></iframe>
-          <a class="video__anchor" href="{% url 'blog:video' %}{{ video.id }}"><h4 class="video__title">{{ video.title }}</h4></a>
+          <a class="video__anchor" href="{% url 'blog:video' %}/{{ video.id }}"><h4 class="video__title">{{ video.title }}</h4></a>
           <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="#" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="#" aria-hidden="true"></a>{{ video.rating }}</span>
         </div>
         {% endfor %}

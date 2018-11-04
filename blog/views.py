@@ -28,7 +28,7 @@ def show_bio(request):
 def like_video(request, video_id):
     if video_id not in request.COOKIES:
         video = Video.objects.get(id=video_id)
-        video.Video_likos += 1
+        video.rating += 1
         video.save()
         response = redirect('/video/' + str(video_id) + '/')
         response.set_cookie(video_id, 'I like it!')
