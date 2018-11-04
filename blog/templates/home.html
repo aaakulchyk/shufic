@@ -1,16 +1,18 @@
 {% extends 'main.html' %}
 {% block home %}
 
-    <div class="d-flex flex-wrap p-2 bd-highlight justify-content-start">
-      {% for chunk in content reversed %}
-      <div class="mb-auto p-2 bd-highlight video" style="width: 25%;">
-        <iframe width="100%" src="{{ chunk.0.url }}" frameborder="0" allow="encrypted-media"></iframe>
-        <a class="video__anchor" href="/video/{{ chunk.0.id }}"><h4 class="video__title">{{ chunk.0.title }}</h4></a>
-        <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="#" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="#" aria-hidden="true"></a>{{ chunk.0.rating }}</span>
+    {% if latest_videos_list %}
+      <div class="d-flex flex-wrap p-2 bd-highlight justify-content-start">
+        {% for video in latest_videos_list %}
+        <div class="mb-auto p-2 bd-highlight video">
+          <iframe width="100%" src="{{ video.url }}" frameborder="0" allow="encrypted-media"></iframe>
+          <a class="video__anchor" href="{% url 'blog:video' %}{{ video.id }}"><h4 class="video__title">{{ video.title }}</h4></a>
+          <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="#" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="#" aria-hidden="true"></a>{{ video.rating }}</span>
+        </div>
+        {% endfor %}
       </div>
-      {% empty %}
+    {% else %}
       <p class="home__empty">Упс... Кажется, Шуфик ещё не распелся.</p>
-      {% endfor %}
-    </div>
+    {% endif %}
 
 {% endblock %}
