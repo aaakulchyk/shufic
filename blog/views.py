@@ -1,8 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CommentForm
 from .models import Video, Comment
 from django.template.context_processors import csrf
 from django.contrib import auth
+
 
 def show_latest_videos(request):
     latest_videos_list = Video.objects.order_by('-date')[:10]
@@ -41,6 +43,15 @@ def toggle_like_video(request, video_id):
     return response
 
 
+def like_video_ajax(request):
+    if request.GET:
+        idvideo = request.GET['like']
+        video = Video.objects.get(id=idvideo)
+        video.rating += 1
+        video.save()
+        return HttpResponse(video.rating)
+
+
 def toggle_dislike_video(request, video_id):
     response = redirect('/video/' + str(video_id) + '/')
     video = Video.objects.get(id=video_id)
@@ -66,4 +77,4 @@ def leave_comment(request, video_id):
             comment = form.save(commit=False)
             comment.videoparent = Video.objects.get(id=video_id)
             form.save()
-    return redirect("/video/" + str(video_id) + "/")
+    return redirect('/video/' + str(video_id) + '/')

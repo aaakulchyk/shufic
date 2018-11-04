@@ -10,7 +10,7 @@
     <h3 class="video__title">{{ video.title }}</h3>
     <span class="video__date">{{ video.date }}</span>
     <p class="video__description">{{ video.description }}</p>
-    <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="/like_video/{{ video.id }}/" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="/dislike_video/{{ video.id }}/" aria-hidden="true"></a>{{ video.rating }}</span>
+    <span id="rating"><a class="oi oi-thumb-up" id="like_video" title="Великолепно! Восхитительно!" aria-hidden="true"></a><a class="oi oi-thumb-down" id="dislike_video" title="Ерунда какая-то!" aria-hidden="true"></a>{{ video.rating }}</span>
   </div>
   {% for comment in comments %}
     <div class="row video__comment">
@@ -29,7 +29,7 @@
       </div>
     </div>
   {% endfor %}
-    <form class="video__commentform" action="{% url 'blog:leave_comment' video.id %}" method="POST">
+    <form class="form video__commentform" action="{% url 'blog:leave_comment' video.id %}" method="POST">
       {% csrf_token %}
       <div class="form-group video__commentform__form">
         {{ form }}
@@ -38,4 +38,4 @@
       <input type="submit" class="btn btn-primary video__commentform__btn" value="Добавить">
     </form>
   {% endif %}
-  {% endblock %}
+{% endblock %}
