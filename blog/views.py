@@ -25,15 +25,17 @@ def show_bio(request):
     return render(request, 'bio.html', {})
 
 
-def like_video(request, video_id):
-    if video_id not in request.COOKIES:
-        video = Video.objects.get(id=video_id)
+def toggle_like_video(request, video_id):
+    response = redirect('/video/' + str(video_id) + '/')
+    video = Video.objects.get(id=video_id)
+    if video_id in request.COOKIES:
+        video.rating -= 1
+        response.delete_cookie(video_id)
+    else:
         video.rating += 1
-        video.save()
-        response = redirect('/video/' + str(video_id) + '/')
-        response.set_cookie(video_id, 'I like it!')
-        return response
-    return redirect('/video/' + str(video_id) + '/')
+        response.set_cookie(video_id)
+    video.save()
+    return response
 
 
 def dislike_video(request, video_id):
