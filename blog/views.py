@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from .forms import CommentForm
 from .models import Video, Comment
-from . import form
 from django.template.context_processors import csrf
 from django.contrib import auth
-
 
 def show_latest_videos(request):
     latest_videos_list = Video.objects.order_by('-date')[:10]
@@ -15,7 +14,7 @@ def show_video(request, video_id):
     context = {'video': get_object_or_404(Video, id=video_id),
                'comments': Comment.objects.filter(videoparent_id=video_id),
                'username': auth.get_user(request).username,
-               'form': form.CommentForm}
+               'form': CommentForm,}
     context.update(csrf(request))
     return render(request, 'video.html', context)
 
