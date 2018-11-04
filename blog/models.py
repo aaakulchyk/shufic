@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Video(models.Model):
-    class Meta():
+    class Meta:
         db_table = 'VideoTable'
 
     url = models.URLField()
@@ -18,7 +18,7 @@ class Video(models.Model):
 
 
 class Comment(models.Model):
-    class Meta():
+    class Meta:
         db_table = 'CommentTable'
 
     videoparent = models.ForeignKey(Video, on_delete=models.CASCADE)

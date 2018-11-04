@@ -61,9 +61,9 @@ def toggle_dislike_video(request, video_id):
 
 def leave_comment(request, video_id):
     if request.POST:
-        _form = form.CommentForm(request.POST)
-        if _form.is_valid():
-            comment = _form.save(commit=False)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
             comment.videoparent = Video.objects.get(id=video_id)
-            _form.save()
+            form.save()
     return redirect('/video/' + str(video_id) + '/')
