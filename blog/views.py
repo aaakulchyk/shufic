@@ -49,7 +49,7 @@ def like_video_ajax(request):
         video = Video.objects.get(id=idvideo)
         video.rating += 1
         video.save()
-        return HttpResponse(video.rating)
+    return HttpResponse(video.rating)
 
 
 def toggle_dislike_video(request, video_id):
