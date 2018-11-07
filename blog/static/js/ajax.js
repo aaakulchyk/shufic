@@ -1,6 +1,6 @@
 $("document").ready (function () {
   $("#like_video").on("click", function () {
-    var video_id = $("#like_video").name;
+    var video_id = this.name;
     $.ajax ({
       type: "GET",
       url: "/ajax/like_video_ajax/",

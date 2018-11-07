@@ -10,7 +10,7 @@
     <h3 class="video__title">{{ video.title }}</h3>
     <span class="video__date">{{ video.date }}</span>
     <p class="video__description">{{ video.description }}</p>
-    <img class="oi oi-thumb-up" id="like_video" style="cursor:pointer" name="{{ video.id }}"><img class="oi oi-thumb-down" id="dislike_video" style="cursor:pointer"><span id="rating">{{ video.rating }}</span>
+    <a class="oi oi-thumb-up" id="like_video" style="cursor:pointer" name="{{ video.id }}"></a><img class="oi oi-thumb-down" id="dislike_video" style="cursor:pointer"><span id="rating">{{ video.rating }}</span>
   </div>
   {% for comment in comments %}
     <div class="row video__comment">
