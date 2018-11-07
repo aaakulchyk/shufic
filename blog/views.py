@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CommentForm
 from .models import Video, Comment
@@ -44,14 +44,11 @@ def toggle_like_video(request, video_id):
 
 
 def like_video_ajax(request):
-    video_id = request.GET.get('video_id')
+    video_id = request.GET['video_id']
     video = Video.objects.get(id=video_id)
     video.rating += 1
     video.save()
-    data = {
-        'rating': video.rating,
-    }
-    return JsonResponse(data)
+    return HttpResponse(video.rating)
 
 
 def toggle_dislike_video(request, video_id):
