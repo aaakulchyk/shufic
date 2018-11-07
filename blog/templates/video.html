@@ -10,7 +10,7 @@
     <h3 class="video__title">{{ video.title }}</h3>
     <span class="video__date">{{ video.date }}</span>
     <p class="video__description">{{ video.description }}</p>
-    <span id="rating"><a class="oi oi-thumb-up" id="like_video" href="/ajax/like_video/" title="Великолепно! Восхитительно!" aria-hidden="true"></a><a class="oi oi-thumb-down" id="dislike_video" title="Ерунда какая-то!" aria-hidden="true"></a>{{ video.rating }}</span>
+    <span id="rating" name="{{ video.id }}"><a class="oi oi-thumb-up" id="like_video" href="/ajax/like_video_ajax/" title="Великолепно! Восхитительно!" aria-hidden="true" style="cursor:pointer"></a><img class="oi oi-thumb-down" id="dislike_video" title="Ерунда какая-то!" aria-hidden="true" style="cursor:pointer">{{ video.rating }}</span>
   </div>
   {% for comment in comments %}
     <div class="row video__comment">
