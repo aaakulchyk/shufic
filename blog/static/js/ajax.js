@@ -122,7 +122,7 @@ $(document).ready (function () {
     console.log(comment_id);
     $.ajax ({
       type: 'GET',
-      url: '/ajax/like_comment',
+      url: '/ajax/like_comment/',
       data: {
         'comment_id': comment_id,
       },
@@ -138,7 +138,7 @@ $(document).ready (function () {
     console.log(comment_id);
     $.ajax ({
       type: 'GET',
-      url: '/ajax/dislike_comment',
+      url: '/ajax/dislike_comment/',
       data: {
         'comment_id': comment_id,
       },

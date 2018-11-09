@@ -1,6 +1,6 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CommentForm
 from .models import Video, Comment
 from django.template.context_processors import csrf
@@ -9,12 +9,27 @@ import json
 
 
 def show_latest_videos(request):
-    latest_videos_list = Video.objects.order_by('-date')
-    paginator = Paginator(latest_videos_list, 12)
+    most_recent_videos_list = Video.objects.order_by('-date')
+    paginator = Paginator(most_recent_videos_list, 12)
     page = request.GET.get('page')
-    latest_videos = paginator.get_page(page)
+    most_recent_videos = paginator.get_page(page)
     context = {
-        'latest_videos': latest_videos,
+        'videos': most_recent_videos,
+    }
+    return render(request, 'home.html', context)
+
+
+def show_most_recent_videos(request):
+    return redirect('/')
+
+
+def show_most_rated_videos(request):
+    most_rated_videos_list = Video.objects.order_by('-rating')
+    paginator = Paginator(most_rated_videos_list, 12)
+    page = request.GET.get('page')
+    most_rated_videos = paginator.get_page(page)
+    context = {
+        'videos': most_rated_videos,
     }
     return render(request, 'home.html', context)
 

@@ -5,6 +5,8 @@ from . import views
 app_name = 'blog'
 urlpatterns = [
     re_path(r'^$', views.show_latest_videos, name='home'),
+    re_path(r'^most_recent$', views.show_most_recent_videos, name='most_recent'),
+    re_path(r'^most_rated$', views.show_most_rated_videos, name='most_rated'),
     re_path(r'^bio$', views.show_bio, name='bio'),
     re_path(r'^video/(?P<video_id>\d+)/$', views.show_video, name='video'),
     re_path(r'^ajax/like_video/$', views.like_video, name='like_video'),
