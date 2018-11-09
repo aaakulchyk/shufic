@@ -25,25 +25,7 @@ def show_bio(request):
     return render(request, 'bio.html', {})
 
 
-def toggle_like_video(request, video_id):
-    response = redirect('/video/' + str(video_id) + '/')
-    video = Video.objects.get(id=video_id)
-    cookies = request.COOKIES
-    if video_id in cookies:
-        if cookies[video_id] == 'dislike':
-            video.rating += 2
-            response.set_cookie(video_id, 'like')
-        elif cookies[video_id] == 'like':
-            video.rating -= 1
-            response.delete_cookie(video_id)
-    else:
-        video.rating += 1
-        response.set_cookie(video_id, 'like')
-    video.save()
-    return response
-
-
-def like_video_ajax(request):
+def like_video(request):
     video_id = request.GET['video_id']
     video = Video.objects.get(id=video_id)
     video.rating += 1
@@ -51,29 +33,30 @@ def like_video_ajax(request):
     return HttpResponse(video.rating)
 
 
-def toggle_dislike_video(request, video_id):
-    response = redirect('/video/' + str(video_id) + '/')
+def dislike_video(request):
+    video_id = request.GET['video_id']
     video = Video.objects.get(id=video_id)
-    cookies = request.COOKIES
-    if video_id in cookies:
-        if cookies[video_id] == 'like':
-            video.rating -= 2
-            response.set_cookie(video_id, 'dislike')
-        elif cookies[video_id] == 'dislike':
-            video.rating += 1
-            response.delete_cookie(video_id)
-    else:
-        video.rating -= 1
-        response.set_cookie(video_id, 'dislike')
+    video.rating -= 1
     video.save()
-    return response
+    return HttpResponse(video.rating)
 
 
-def leave_comment(request, video_id):
+'''def leave_comment(request, video_id):
     if request.POST:
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.videoparent = Video.objects.get(id=video_id)
             form.save()
-    return redirect('/video/' + str(video_id) + '/')
+    return redirect('/video/' + str(video_id) + '/')'''
+
+
+def leave_comment(request, video_id):
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.videoparent = Video.objects.get(id=video_id)
+        form.save()
+        return HttpResponse(comment.text)
+    else:
+        pass

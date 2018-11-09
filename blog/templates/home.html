@@ -1,18 +1,43 @@
 {% extends 'main.html' %}
 {% block home %}
-
+{% load staticfiles %}
+    <div class="card bg-dark text-white">
+      <img class="card-img" src="{% static 'images/shufic_main.jpg' %}" alt="">
+      <div class="card-img-overlay">
+        <h1 class="card-title text-center">ШУФИК</h1>
+        <blockquote class="blockquote text-center">
+          <p class="card-text mb-0">Я постарею, когда перестану петь</p>
+          <footer class="blockquote-footer">Заслуженный артист РФ, <cite title="Михаил Шуфутинский">Михаил Шуфутинский</cite></footer>
+        </blockquote>
+        <h6 class="text-center"><a class="badge badge-pill badge-light" href="#">Wiki</a></h6>
+      </div>
+    </div>
+    <div class="videos">
     {% if latest_videos_list %}
-      <div class="d-flex flex-wrap p-2 bd-highlight justify-content-start">
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-info">Все видео</button>
+        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Все видео</span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="videos-dropdown">
+          <a class="dropdown-item" id="most-recent" href="#">Самые новые</a>
+          <a class="dropdown-item" id="most-rated" href="#">Самые любимые</a>
+        </div>
+      </div>
+      <div class="d-inline-flex justify-content-start align-items-start flex-wrap">
         {% for video in latest_videos_list %}
-        <div class="mb-auto p-2 bd-highlight video">
+        <div class="mb-2 p-2 bd-highlight video">
           <iframe width="100%" src="{{ video.url }}" frameborder="0" allow="encrypted-media"></iframe>
-          <a class="video__anchor" href="{% url 'blog:video' video.id %}"><h4 class="video__title">{{ video.title }}</h4></a>
-          <span><a class="oi oi-thumb-up" title="Великолепно! Восхитительно!" href="#" aria-hidden="true"></a><a class="oi oi-thumb-down" title="Ерунда какая-то!" href="#" aria-hidden="true"></a>{{ video.rating }}</span>
+          <a class="video-anchor" href="{% url 'blog:video' video.id %}"><span class="d-inline-block text-truncate" style="max-width: 100%;">{{ video.title }}</span></a>
+          <a class="btn oi oi-thumb-up" id="like-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Щикарно!"></a><span class="video-rating" id="video-u-info-rating">{{ video.rating }}</span><a class="btn oi oi-thumb-down" id="dislike-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Как-то не очень..."></a>
         </div>
         {% endfor %}
       </div>
     {% else %}
-      <p class="home__empty">Упс... Кажется, Шуфик ещё не распелся.</p>
+      <div class="home-empty">
+        <p class="home-empty-message">Упс... Кажется, Шуфик ещё не распелся.</p>
+      </div>
     {% endif %}
+    </div>
 
 {% endblock %}

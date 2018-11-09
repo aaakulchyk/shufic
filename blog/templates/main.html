@@ -3,7 +3,9 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Блог имени Шуфутинского">
+    <meta name="author" content="Андрей Кульчик">
     <title>Шуфик</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/open-iconic-master/font/css/open-iconic-bootstrap.css' %}">
@@ -15,32 +17,53 @@
     <script type="text/javascript" src="{% static 'js/ajax.js' %}"></script>
   </head>
   <body>
-    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row d-flex justify-content-between bg-dark">
-      <div class="navbar-brand brand">
-        <a class="brand__home" href="/"><img width="20%" src="{% static 'images/shufic_silent.png' %}" class="img-fluid" alt="Тихий Мишаня"></a>
-        <a class="brand__bio" href="/bio">Шуфик</a>
-      </div>
-      <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-        <form class="form-inline">
-          <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
-        </form>
-      </div>
-      <nav class="navbar login flex-row ml-md-auto d-none d-md-flex navbar-expand-sm bg-light">
-        <ul class="navbar-nav">
-          {% if username %}
-            <li class="nav-item"> <a href = "/auth/logout/"> Выйти {{ username }} </a></li>
-          {% else %}
-            <li class="nav-item"><a href="/auth/login/">Войти</a></li>
-          {% endif %}
-        </ul>
+    <div id="wrapper">
+      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top justify-content-between">
+        <a class="navbar-brand" href="/">Шуфик</a>
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="navbar-nav navbar-collapse form-inline my-2 my-sm-0" id="navbarSupportedContent">
+            <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
+          </form>
+          <button class="btn btn-primary">Sign up</button>
+        </div>
       </nav>
-    </header>
-    <div class="container">
-      {% block home %}{% endblock %}
-      {% block video %}{% endblock %}
-      {% block bio %}{% endblock %}
-      {% block log %}{% endblock %}
+      <div class="supercontainer" id="supercontainer">
+        <div class="container">
+          {% block home %}{% endblock %}
+          {% block video %}{% endblock %}
+          {% block bio %}{% endblock %}
+          {% block log %}{% endblock %}
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark footer">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav navbar-collapse" id="navbarSupportedContent">
+                <li class="nav-item">
+                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+                </li>
+              </ul>
+              <span>Андрей Кульчик | 2018</span>
+            </div>
+          </nav>
+        </div>
+      </div>
     </div>
   </body>
 </html>
