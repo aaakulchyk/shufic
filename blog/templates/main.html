@@ -17,19 +17,14 @@
     <script type="text/javascript" src="{% static 'js/ajax.js' %}"></script>
   </head>
   <body>
-    <div id="wrapper">
-      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top justify-content-between">
+    <div class="container-fluid" id="wrapper">
+      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top justify-content-around">
         <a class="navbar-brand" href="/">Шуфик</a>
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="navbar-nav navbar-collapse form-inline my-2 my-sm-0" id="navbarSupportedContent">
-            <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
-          </form>
-          <button class="btn btn-primary">Sign up</button>
-        </div>
+        <form class="navbar-nav form-inline my-2 my-sm-0">
+          <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
+        </form>
+        <button class="btn btn-primary">Войти</button>
       </nav>
       <div class="supercontainer" id="supercontainer">
         <div class="container">
@@ -37,30 +32,28 @@
           {% block video %}{% endblock %}
           {% block bio %}{% endblock %}
           {% block log %}{% endblock %}
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark footer">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav navbar-collapse" id="navbarSupportedContent">
-                <li class="nav-item">
-                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
-                </li>
-              </ul>
-              <span>Андрей Кульчик | 2018</span>
-            </div>
+          <nav class="navbar navbar-expand-lg navbar-light bg-info text-white justify-content-between footer">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link oi oi-globe" href="#" role="button" aria-hidden="true"></a>
+              </li>
+            </ul>
+            <span>Андрей Кульчик | 2018</span>
           </nav>
         </div>
       </div>
