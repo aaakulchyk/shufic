@@ -69,3 +69,19 @@ def leave_comment(request):
             'rating': comment.rating,
         }
         return HttpResponse(json.dumps(response_data), content_type='application/json')
+
+
+def like_comment(request):
+    comment_id = request.GET.get('comment_id')
+    comment = Comment.objects.get(id=comment_id)
+    comment.rating += 1
+    comment.save()
+    return HttpResponse(comment.rating)
+
+
+def dislike_comment(request):
+    comment_id = request.GET.get('comment_id')
+    comment = Comment.objects.get(id=comment_id)
+    comment.rating -= 1
+    comment.save()
+    return HttpResponse(comment.rating)

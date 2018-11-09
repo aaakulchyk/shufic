@@ -1,6 +1,4 @@
 $(function() {
-
-
     // This function gets cookie with a given name
     function getCookie(name) {
         var cookieValue = null;
@@ -18,11 +16,9 @@ $(function() {
         return cookieValue;
     }
     var csrftoken = getCookie('csrftoken');
-
     /*
     The functions below will create a header with csrftoken
     */
-
     function csrfSafeMethod(method) {
         // these HTTP methods do not require CSRF protection
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -40,7 +36,6 @@ $(function() {
             // or any other URL that isn't scheme relative or absolute i.e relative.
             !(/^(\/\/|http:|https:).*/.test(url));
     }
-
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
             if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
@@ -62,7 +57,9 @@ $(document).ready (function () {
     $.ajax ({
       type: 'GET',
       url: '/ajax/like_video/',
-      data: {'video_id': video_id, },
+      data: {
+        'video_id': video_id,
+      },
       dataType: 'text',
       catch: false,
       success: function (data) {
@@ -75,7 +72,9 @@ $(document).ready (function () {
     $.ajax ({
       type: 'GET',
       url: '/ajax/dislike_video/',
-      data: {'video_id': video_id, },
+      data: {
+        'video_id': video_id,
+      },
       dataType: 'text',
       catch: false,
       success: function (data) {
@@ -90,7 +89,10 @@ $(document).ready (function () {
     $.ajax ({
       type: 'POST',
       url: '/ajax/leave_comment/',
-      data: {video_id: video_id, text: $('#commentform-text').val(), },
+      data: {
+        video_id: video_id,
+        text: $('#commentform-text').val(),
+      },
       dataType: 'html',
       catch: false,
       success: function (json) {
@@ -98,6 +100,52 @@ $(document).ready (function () {
         console.log(json);
         var newComment = '<li class="video-u-comments-list-item"><div class="row video-u-comment"><div class="col-1 video-u-comment-rating"><a class="btn oi oi-chevron-top" aria-hidden="true"></a><p class="video-u-comment-rating-value text-center">' + json.rating + '</p><a class="btn oi oi-chevron-bottom" aria-hidden="true"></a></div><div class="col-8 video-u-comment-content"><div class="video-u-comment-date"><span class="video-u-comment-date">' + '</span></div><div class="video-u-comment-text"><p class="video-u-comment-text">' + json.text + '</p></div></div></div></li>';
         $('#video-comments').append(newComment);
+      }
+    });
+  });
+  $('#id_username').change(function () {
+    var form = $(this).closest('form');
+    $.ajax ({
+        type: 'POST',
+        url: form.attr('data-validate-username-url'),
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            console.log('Пользователь с таким именем уже существует.');
+          }
+        }
+    });
+  });
+  $('#like-comment').on('click', function () {
+    var comment_id = this.name;
+    console.log(comment_id);
+    $.ajax ({
+      type: 'GET',
+      url: '/ajax/like_comment',
+      data: {
+        'comment_id': comment_id,
+      },
+      dataType: 'text',
+      catch: false,
+      success: function (data) {
+        $('#comment-rating').html (data)
+      }
+    });
+  });
+  $('#dislike-comment').on('click', function () {
+    var comment_id = this.name;
+    console.log(comment_id);
+    $.ajax ({
+      type: 'GET',
+      url: '/ajax/dislike_comment',
+      data: {
+        'comment_id': comment_id,
+      },
+      dataType: 'text',
+      catch: false,
+      success: function (data) {
+        $('#comment-rating').html (data)
       }
     });
   });

@@ -28,9 +28,9 @@
               <li class="video-u-comments-list-item">
                 <div class="row video-u-comment">
                   <div class="col-1 video-u-comment-rating">
-                    <a class="btn oi oi-chevron-top" aria-hidden="true"></a>
-                    <p class="video-u-comment-rating-value text-center">{{ comment.rating }}</p>
-                    <a class="btn oi oi-chevron-bottom" aria-hidden="true"></a>
+                    <a class="btn oi oi-chevron-top" id="like-comment" aria-hidden="true" name="{{ comment.id }}"></a>
+                    <p class="video-u-comment-rating-value text-center" id="comment-rating">{{ comment.rating }}</p>
+                    <a class="btn oi oi-chevron-bottom" id="dislike-comment" aria-hidden="true" name="{{ comment.id }}"></a>
                   </div>
                   <div class="col-8 video-u-comment-content">
                     <div class="video-u-comment-date">

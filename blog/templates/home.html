@@ -1,27 +1,27 @@
 {% extends 'main.html' %}
 {% block home %}
 {% load staticfiles %}
-    <div class="card bg-dark text-white">
-      <img class="card-img" src="{% static 'images/shufic_main.jpg' %}" alt="">
-      <div class="card-img-overlay">
-        <h1 class="card-title text-center">ШУФИК</h1>
-        <blockquote class="blockquote text-center">
-          <p class="card-text mb-0">Я постарею, когда перестану петь</p>
-          <footer class="blockquote-footer">Заслуженный артист РФ, <cite title="Михаил Шуфутинский">Михаил Шуфутинский</cite></footer>
+    <div class="card bg-dark text-white shufic">
+      <img class="card-img shufic-img" src="{% static 'images/shufic_main.jpg' %}" alt="">
+      <div class="card-img-overlay shufic-img-overlay">
+        <h1 class="card-title text-center shufic-title">ШУФИК</h1>
+        <blockquote class="blockquote text-center shufic-blockquote">
+          <p class="card-text mb-0 shufic-blockquote-text">Я постарею, когда перестану петь</p>
+          <footer class="blockquote-footer shufic-blockquote-footer">Заслуженный артист РФ, <cite title="Михаил Шуфутинский">Михаил Шуфутинский</cite></footer>
         </blockquote>
-        <h6 class="text-center"><a class="badge badge-pill badge-light" href="#">Wiki</a></h6>
+        <h6 class="text-center"><a class="badge badge-pill badge-light" href="/bio">Биография</a></h6>
       </div>
     </div>
     <div class="videos">
     {% if latest_videos %}
       <div class="btn-group dropright">
-        <button type="button" class="btn btn-info">Все видео</button>
+        <button type="button" class="btn btn-outline-info">Все видео</button>
         <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="sr-only">Все видео</span>
         </button>
         <div class="dropdown-menu" aria-labelledby="videos-dropdown">
-          <a class="dropdown-item" id="most-recent" href="#">Самые новые</a>
-          <a class="dropdown-item" id="most-rated" href="#">Самые любимые</a>
+          <a class="dropdown-item" id="most-recent" href="/most_recent/">Самые новые</a>
+          <a class="dropdown-item" id="most-rated" href="/most_rated/">Самые любимые</a>
         </div>
       </div>
       <div class="d-inline-flex justify-content-start align-items-start flex-wrap">
