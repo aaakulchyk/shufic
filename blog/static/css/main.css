@@ -1,0 +1,77 @@
+#wrapper {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-bottom: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+span, p, a, button {
+  font-family: Fira Sans Condensed, sans-serif;
+}
+
+.supercontainer {
+  padding-top: 200px;
+}
+
+.fixed-top.scrolled {
+  background-color: #fff !important;
+  box-shadow: 0px 15px 10px -15px #111;
+  transition: background-color 200ms linear;
+}
+
+#header-title {
+  font-family: Pacifico, sans-serif;
+  color: #6600cc;
+}
+
+.container {
+  background-color: #fff;
+  padding-top: 40px;
+  padding-bottom: 15px;
+  border: 0px solid transparent;
+  border-radius: 8px;
+}
+
+#footer {
+  background-color: #3366cc;
+  border: 0px solid transparent;
+  border-radius: 6px;
+}
+
+.videos {
+  margin-top: 12px;
+  padding-top: 0px;
+}
+
+.videos .btn-group {
+  margin-top: 0px;
+  margin-bottom: 60px;
+}
+
+.flex-wrap .video {
+  width: 25%;
+}
+
+.container nav {
+  margin-top: 30px;
+}
+
+.shufic-title {
+  font-family: Forum, sans-serif;
+  font-size: 6rem;
+}
+
+.shufic-blockquote-text {
+  font-family: Marck Script, Pacifico, sans-serif;
+  font-size: 2rem;
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
