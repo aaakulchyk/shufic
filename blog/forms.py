@@ -8,7 +8,13 @@ class CommentForm(ModelForm):
         model = Comment
         fields = ['text']
         widgets = {
-            'text': Textarea(attrs={'rows': 2, 'class': 'form-control'}),
+            'text': Textarea(attrs={
+                'rows': 2,
+                'class': 'form-control',
+                'id': 'commentform-text',
+                'required': True,
+                'placeholder': 'Оставьте комментарий',
+            }),
         }
         labels = {
             'text': _('Комментировать'),

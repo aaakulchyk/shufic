@@ -4,6 +4,7 @@ from .forms import CommentForm
 from .models import Video, Comment
 from django.template.context_processors import csrf
 from django.contrib import auth
+import json
 
 
 def show_latest_videos(request):
@@ -51,12 +52,14 @@ def dislike_video(request):
     return redirect('/video/' + str(video_id) + '/')'''
 
 
-def leave_comment(request, video_id):
-    form = CommentForm(request.POST)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.videoparent = Video.objects.get(id=video_id)
-        form.save()
-        return HttpResponse(comment.text)
-    else:
-        pass
+def leave_comment(request):
+    if request.POST:
+        videoparent = Video.objects.get(id=request.POST.get('video_id'))
+        text = request.POST.get('text')
+        comment = Comment(videoparent=videoparent, text=text)
+        comment.save()
+        response_data = {
+            'text': comment.text,
+            'rating': comment.rating,
+        }
+        return HttpResponse(json.dumps(response_data), content_type='application/json')

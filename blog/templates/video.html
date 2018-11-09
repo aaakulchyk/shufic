@@ -13,7 +13,7 @@
       <div class="col-9 video-u-info">
         <div class="video-u-info-top">
           <h3 class="video-u-info-title">{{ video.title }}</h3>
-          <a class="btn oi oi-thumb-up" id="like-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Щикарно!"></a><span id="video-u-info-rating">{{ video.rating }}</span><a class="btn oi oi-thumb-down" id="dislike-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Как-то не очень..."></a>
+          <a class="btn oi oi-thumb-up" id="like-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Щикарно!"></a><span class="video-u-info-rating" id="video-rating">{{ video.rating }}</span><a class="btn oi oi-thumb-down" id="dislike-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Как-то не очень..."></a>
         </div>
         <hr>
         <div class="video-u-info-bottom">
@@ -23,7 +23,7 @@
         <hr>
         <div class="video-u-comments">
           {% if comments %}
-            <ul class="list-unstyled video-u-comments-list">
+            <ul class="list-unstyled video-u-comments-list" id="video-comments">
               {% for comment in comments %}
               <li class="video-u-comments-list-item">
                 <div class="row video-u-comment">

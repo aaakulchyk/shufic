@@ -29,7 +29,7 @@
         <div class="mb-2 p-2 bd-highlight video">
           <iframe width="100%" src="{{ video.url }}" frameborder="0" allow="encrypted-media"></iframe>
           <a class="video-anchor" href="{% url 'blog:video' video.id %}"><span class="d-inline-block text-truncate" style="max-width: 100%;">{{ video.title }}</span></a>
-          <a class="btn oi oi-thumb-up" id="like-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Щикарно!"></a><span class="video-rating" id="video-u-info-rating">{{ video.rating }}</span><a class="btn oi oi-thumb-down" id="dislike-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Как-то не очень..."></a>
+          <a class="btn oi oi-thumb-up" id="like-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Щикарно!"></a><span class="video-rating" id="video-rating">{{ video.rating }}</span><a class="btn oi oi-thumb-down" id="dislike-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Как-то не очень..."></a>
         </div>
         {% endfor %}
       </div>
