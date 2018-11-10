@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 
-{% block signup %}
+{% block content %}
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}

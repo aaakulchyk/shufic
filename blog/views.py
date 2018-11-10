@@ -20,7 +20,7 @@ def show_latest_videos(request):
 
 
 def show_most_recent_videos(request):
-    return redirect('/')
+    return show_latest_videos(request)
 
 
 def show_most_rated_videos(request):

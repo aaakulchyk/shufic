@@ -34,14 +34,11 @@
           <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
         </form>
-        <a href="/auth/signup/" class="btn btn-primary">Войти</a>
+        <a href="/auth/login/" class="btn btn-primary">Войти</a>
       </nav>
       <div class="supercontainer" id="supercontainer">
         <div class="container">
-          {% block home %}{% endblock %}
-          {% block video %}{% endblock %}
-          {% block bio %}{% endblock %}
-          {% block signup %}{% endblock %}
+          {% block content %}{% endblock %}
           <nav class="navbar navbar-expand-lg navbar-light text-white justify-content-between footer" id="footer">
             <ul class="navbar-nav footer-socialmedia">
               <li class="nav-item">
