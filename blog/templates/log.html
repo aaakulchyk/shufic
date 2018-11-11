@@ -1,8 +1,0 @@
-{% extends 'main.html' %}
-{% block auth %}
-  {% if user.is_authenticated %}
-  <span>Привет, {{ user.username }}!</span><a href="{% url 'logout' %}" class="btn btn-primary">Выйти</a>
-  {% else %}
-  <span>Вы не авторизированы.</span><a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
-  {% endif %}
-{% endblock %}
