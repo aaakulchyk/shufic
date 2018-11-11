@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+    <div class="card bg-dark text-white shufic">
+      <img class="card-img shufic-img" src="{% static 'images/shufic_main.jpg' %}" alt="">
+      <div class="card-img-overlay d-flex flex-column justify-content-center shufic-img-overlay">
+        <h2 class="card-title text-center shufic-title">ШУФИК</h2>
+        <blockquote class="blockquote text-center shufic-blockquote">
+          <p class="card-text mb-0 shufic-blockquote-text">Я постарею, когда перестану петь</p>
+          <footer class="blockquote-footer shufic-blockquote-footer">Заслуженный артист РФ, <cite title="Михаил Шуфутинский">Михаил Шуфутинский</cite></footer>
+        </blockquote>
+        <h6 class="text-center"><a class="badge badge-pill badge-light" href="/bio">Биография</a></h6>
+      </div>
+    </div>
+    <div class="videos">
+    {% if videos %}
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-outline-info disabled">Все видео</button>
+        <button type="button" class="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Все видео</span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="videos-dropdown">
+          <a class="dropdown-item" id="most-recent" href="{% url 'blog:most_recent' %}">Самые новые</a>
+          <a class="dropdown-item" id="most-rated" href="{% url 'blog:most_rated' %}">Самые любимые</a>
+        </div>
+      </div>
+      <div class="d-inline-flex justify-content-start align-items-start flex-wrap">
+        {% for video in videos %}
+        <div class="mb-2 p-2 bd-highlight video">
+          <iframe width="100%" src="{{ video.url }}" frameborder="0" allow="encrypted-media"></iframe>
+          <a class="video-link" href="{% url 'blog:video' video.id %}"><span class="d-inline-block text-truncate" style="max-width: 100%;">{{ video.title }}</span></a>
+          <a class="btn far fa-thumbs-up" id="like-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Щикарно!"></a><span class="video-rating" id="video-rating">{{ video.rating }}</span><a class="btn far fa-thumbs-down" id="dislike-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Как-то не очень..."></a>
+        </div>
+        {% endfor %}
+      </div>
+      <nav aria-label="Навигация по страницам">
+        <ul class="pagination justify-content-center">
+          {% if videos.has_previous %}
+          <li class="page-item"><a href="?page=1" class="page-link">&laguo; первая</a></li>
+          <li class="page-item"><a href="?page={{ latest_videos.previous_page_number }}" class="page-link" tabindex="-1">Предыдущая</a></li>
+          {% endif %}
+          <li class="page-item active"><span class="page-link">{{ videos.number }}<span class="sr-only">(текущая)</span></span></li>
+          {% if videos.has_next %}
+          <li class="page-item"><a href="?page={{ latest_videos.next_page_number }}" class="page-link" tabindex="+1">Следующая</a></li>
+          <li class="page-item"><a href="?page={{ latest_videos.paginator.num_pages }}" class="page-link">последняя &raquo;</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% else %}
+      <div class="home-empty">
+        <p class="home-empty-message">Упс... Кажется, Шуфик ещё не распелся.</p>
+      </div>
+    {% endif %}
+    </div>
+
+{% endblock %}

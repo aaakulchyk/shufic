@@ -1,6 +1,6 @@
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from .forms import CommentForm
 from .models import Video, Comment
 from django.template.context_processors import csrf
@@ -48,7 +48,7 @@ def show_bio(request):
 
 
 def like_video(request):
-    video_id = request.GET['video_id']
+    video_id = request.GET.get('video_id')
     video = Video.objects.get(id=video_id)
     video.rating += 1
     video.save()
@@ -56,21 +56,11 @@ def like_video(request):
 
 
 def dislike_video(request):
-    video_id = request.GET['video_id']
+    video_id = request.GET.get('video_id')
     video = Video.objects.get(id=video_id)
     video.rating -= 1
     video.save()
     return HttpResponse(video.rating)
-
-
-'''def leave_comment(request, video_id):
-    if request.POST:
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.videoparent = Video.objects.get(id=video_id)
-            form.save()
-    return redirect('/video/' + str(video_id) + '/')'''
 
 
 def leave_comment(request):

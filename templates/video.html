@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ video.title }}{% endblock %}
+
+{% block content %}
+  {% if error_message %}
+  <p><strong>{{ error_message }}</strong></p>
+  {% endif %}
+  <div class="video">
+    {% if video %}
+    <div class="col-12 video-videoframe">
+      <iframe width="100%" height="480" src="{{ video.url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <div class="row video-u">
+      <div class="col-9 video-u-info">
+        <div class="video-u-info-top">
+          <h3 class="video-u-info-title">{{ video.title }}</h3>
+          <a class="btn oi oi-thumb-up" id="like-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Щикарно!"></a><span class="video-u-info-rating" id="video-rating">{{ video.rating }}</span><a class="btn oi oi-thumb-down" id="dislike-video" style="cursor:pointer;" name="{{ video.id }}" data-toggle="tooltip" data-placement="bottom" title="Как-то не очень..."></a>
+        </div>
+        <hr>
+        <div class="video-u-info-bottom">
+          <p class="video-u-info-description">{{ video.description }}</p>
+          <span class="video-u-info-date">{{ video.date }}</span>
+        </div>
+        <hr>
+        <div class="video-u-comments">
+          {% if comments %}
+            <ul class="list-unstyled video-u-comments-list" id="video-comments">
+              {% for comment in comments %}
+              <li class="video-u-comments-list-item">
+                <div class="row video-u-comment">
+                  <div class="col-1 video-u-comment-rating">
+                    <a class="btn oi oi-chevron-top" id="like-comment" aria-hidden="true" name="{{ comment.id }}"></a>
+                    <p class="video-u-comment-rating-value text-center" id="comment-rating">{{ comment.rating }}</p>
+                    <a class="btn oi oi-chevron-bottom" id="dislike-comment" aria-hidden="true" name="{{ comment.id }}"></a>
+                  </div>
+                  <div class="col-8 video-u-comment-content">
+                    <div class="video-u-comment-date">
+                      <span class="video-u-comment-date">{{ comment.date }}</span>
+                    </div>
+                    <div class="video-u-comment-text">
+                      <p class="video-u-comment-text">{{ comment.text }}</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+            <hr>
+          {% endif %}
+          <form class="form video-u-commentform" id="leave-comment" method="POST" name="{{ video.id }}">
+            {% csrf_token %}
+            <div class="form-group video-u-commentform-form">
+              {{ form }}
+              <div class="d-flex flex-row">
+                <span class="form-text text-muted">Добавляя комментарий, переверните календарь :) </span>
+                <input type="submit" class="btn btn-primary video-u-commentform-btn" value="Добавить">
+              </div>
+            </div>
+          </form>
+        </div>
+      {% endif %}
+      </div>
+      <div class="col-3 video-u-sidebar">
+        <div class="col-3 video-u-sidebar-next">
+        </div>
+        <hr>
+        <!-- {% for prev_video in prev_videos %}
+        {% endfor %} -->
+      </div>
+    </div>
+  </div>
+{% endblock %}
