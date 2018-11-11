@@ -31,8 +31,8 @@
     <div class="container-fluid" id="wrapper" style="background-image: url({% static 'images/galaxy.jpg' %});">
       <nav class="navbar navbar-expand-sm navbar-light bg-transparent fixed-top justify-content-around header" id="header">
         <a class="navbar-brand header-title" href="/"><span id="header-title">Шуфик</span></a>
-        <form class="navbar-nav form-inline my-2 my-sm-0">
-          <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
+        <form class="navbar-nav form-inline my-2 my-sm-0" action="{% url 'blog:search' %}" method="get">
+          <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search" name="query" value="{{ request.GET.query }}">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
         </form>
         {% if user.is_authenticated %}

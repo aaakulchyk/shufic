@@ -14,4 +14,5 @@ urlpatterns = [
     re_path(r'^ajax/leave_comment/$', views.leave_comment, name='leave_comment'),
     re_path(r'^ajax/like_comment/$', views.like_comment, name='like_comment'),
     re_path(r'^ajax/dislike_comment/$', views.dislike_comment, name='dislike_comment'),
+    re_path(r'^results/$', views.search, name='search'),
 ]

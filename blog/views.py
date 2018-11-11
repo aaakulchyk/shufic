@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .forms import CommentForm
@@ -90,3 +91,15 @@ def dislike_comment(request):
     comment.rating -= 1
     comment.save()
     return HttpResponse(comment.rating)
+
+
+def search(request):
+    query = request.GET.get('query')
+    queried_videos_list = Video.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+    paginator = Paginator(queried_videos_list, 5)
+    page = request.GET.get('page')
+    queried_videos = paginator.get_page(page)
+    context = {
+        'videos': queried_videos,
+    }
+    return render(request, 'search.html', context)
