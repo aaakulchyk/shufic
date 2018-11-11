@@ -30,9 +30,9 @@
       <div class="d-inline-flex justify-content-start align-items-start flex-wrap">
         {% for video in videos %}
 
-          {% assign rows = videos.size | divided_by: 4 %}
-          {% for row in (1..rows) %}
-          {% endfor %}
+          <!--{% assign rows = videos.size | divided_by: 4 %}-->
+          <!--{% for row in (1..rows) %}-->
+          <!--{% endfor %}-->
 
         <div class="mb-2 p-2 bd-highlight video">
           <iframe width="100%" src="{{ video.url }}" frameborder="0" allow="encrypted-media"></iframe>
