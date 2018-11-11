@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Поиск{% endblock %}
+
+{% block content %}
+  <div class="row">
+  {% if videos %}
+    {% for video in videos %}
+      <div class="col-12 video">
+        <div class="card-group">
+          <div class="card">
+            <iframe class="card-img" src="{{ video.url }}" frameborder="0" allow="encrypted-media"></iframe>
+            <div class="card-body">
+              <a class="card-title video-link" href="{% url 'blog:video' video.id %}"><p class="d-inline-block text-truncate" style="max-width: 100%;">{{ video.title }}</p></a>
+              <p class="card-text video-rating" id="video-rating">{{ video.rating }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <nav aria-label="Навигация по страницам">
+      <ul class="pagination justify-content-center">
+        {% if videos.has_previous %}
+        <li class="page-item"><a href="?page=1" class="page-link">&laguo; первая</a></li>
+        <li class="page-item"><a href="?page={{ latest_videos.previous_page_number }}" class="page-link" tabindex="-1">Предыдущая</a></li>
+        {% endif %}
+        <li class="page-item active"><span class="page-link">{{ videos.number }}<span class="sr-only">(текущая)</span></span></li>
+        {% if videos.has_next %}
+        <li class="page-item"><a href="?page={{ latest_videos.next_page_number }}" class="page-link" tabindex="+1">Следующая</a></li>
+        <li class="page-item"><a href="?page={{ latest_videos.paginator.num_pages }}" class="page-link">последняя &raquo;</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% else %}
+    <div class="col-12">
+      <div class="empty text-center">
+        <img class="empty-img img-fluid rounded" src="{% static 'images/empty_image.jpg' %}">
+        <p class="empty-message text-danger">Упс... Кажется, <abbr title="Михаил Захарович">Шуфик</abbr> до такого ещё не распелся.</p>
+      </div>
+    </div>
+  {% endif %}
+  </div>
+{% endblock %}

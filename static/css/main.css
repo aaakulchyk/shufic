@@ -78,3 +78,8 @@ span, p, a, button {
     text-decoration: none;
     border-radius: 50%;
 }
+
+/* empty messages*/
+.empty-message {
+  font-size: 2em;
+}
