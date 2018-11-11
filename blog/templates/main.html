@@ -34,7 +34,11 @@
           <input class="form-control mr-2" type="search" placeholder="Найти шедевр" aria-label="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
         </form>
-        <a href="/auth/login/" class="btn btn-primary">Войти</a>
+        {% if user.is_authenticated %}
+        <span>Привет, {{ user.username }}! <a href="{% url 'logout' %}" class="btn btn-primary">Выйти</a></span>
+        {% else %}
+        <span>Вы не авторизированы. <a href="{% url 'login' %}" class="btn btn-primary">Войти</a></span>
+        {% endif %}
       </nav>
       <div class="supercontainer" id="supercontainer">
         <div class="container">

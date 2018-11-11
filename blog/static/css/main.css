@@ -20,9 +20,12 @@ span, p, a, button {
   transition: background-color 200ms linear;
 }
 
+#header span {
+  color: #6600cc;
+}
+
 #header-title {
   font-family: Pacifico, sans-serif;
-  color: #6600cc;
 }
 
 .container {

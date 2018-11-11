@@ -1,10 +1,8 @@
 {% extends 'main.html' %}
-{% block content %}
+{% block auth %}
   {% if user.is_authenticated %}
-  <p>Hi {{ user.username }}</p>
-  <a href="{% url 'logout' %}">logout</a>
+  <span>Привет, {{ user.username }}!</span><a href="{% url 'logout' %}" class="btn btn-primary">Выйти</a>
   {% else %}
-  <p>You are not logged in.</p>
-  <a href="{% url 'login' %}">login</a>
+  <span>Вы не авторизированы.</span><a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
   {% endif %}
 {% endblock %}
